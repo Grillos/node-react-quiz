@@ -4,8 +4,8 @@ import Main from '../template/Main'
 
 const headerProps = {
     icon: 'users',
-    title: 'Quiz',
-    subtitle: 'Cadastro de Quiz: Incluir, Listar, Alterar e Excluir!'
+    title: 'Usuario',
+    subtitle: 'Cadastro de Usuarios: Incluir, Listar, Alterar e Excluir!'
 }
 
 const baseUrl = 'http://localhost:3001/users'
@@ -57,7 +57,7 @@ export default class UserCrud extends Component {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Pergunta</label>
+                            <label>Nome</label>
                             <input type="text" className="form-control"
                                 name="name"
                                 value={this.state.user.name}
@@ -68,7 +68,7 @@ export default class UserCrud extends Component {
 
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Respostas</label>
+                            <label>Email</label>
                             <input type="text" className="form-control"
                                 name="email"
                                 value={this.state.user.email}
@@ -112,8 +112,9 @@ export default class UserCrud extends Component {
             <table className="table mt-4">
                 <thead>
                     <tr>
-                        <th>Pergunta</th>
-                        <th>Respostas</th>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
