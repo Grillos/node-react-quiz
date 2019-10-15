@@ -4,8 +4,8 @@ import Main from '../template/Main'
 
 const headerProps = {
     icon: 'users',
-    title: 'Usuários',
-    subtitle: 'Cadastro de usuários: Incluir, Listar, Alterar e Excluir!'
+    title: 'Quiz',
+    subtitle: 'Cadastro de Quiz: Incluir, Listar, Alterar e Excluir!'
 }
 
 const baseUrl = 'http://localhost:3001/users'
@@ -57,23 +57,23 @@ export default class UserCrud extends Component {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Nome</label>
+                            <label>Pergunta</label>
                             <input type="text" className="form-control"
                                 name="name"
                                 value={this.state.user.name}
                                 onChange={e => this.updateField(e)}
-                                placeholder="Digite o nome..." />
+                                placeholder="Digite a pergunta..." />
                         </div>
                     </div>
 
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>E-mail</label>
+                            <label>Respostas</label>
                             <input type="text" className="form-control"
                                 name="email"
                                 value={this.state.user.email}
                                 onChange={e => this.updateField(e)}
-                                placeholder="Digite o e-mail..." />
+                                placeholder="Digite a resposta..." />
                         </div>
                     </div>
                 </div>
@@ -112,10 +112,8 @@ export default class UserCrud extends Component {
             <table className="table mt-4">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Ações</th>
+                        <th>Pergunta</th>
+                        <th>Respostas</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,7 +127,6 @@ export default class UserCrud extends Component {
         return this.state.list.map(user => {
             return (
                 <tr key={user.id}>
-                    <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>
