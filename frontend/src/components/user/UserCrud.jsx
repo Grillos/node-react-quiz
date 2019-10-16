@@ -4,8 +4,8 @@ import Main from '../template/Main'
 
 const headerProps = {
     icon: 'users',
-    title: 'Usuario',
-    subtitle: 'Cadastro de Usuarios: Incluir, Listar, Alterar e Excluir!'
+    title: 'Usuários',
+    subtitle: 'Cadastro de usuários: Incluir, Listar, Alterar e Excluir!'
 }
 
 const baseUrl = 'http://localhost:3001/users'
@@ -30,8 +30,8 @@ export default class UserCrud extends Component {
 
     save() {
         const user = this.state.user
-        const method = user.id ? 'put' : 'post'
-        const url = user.id ? `${baseUrl}/${user.id}` : baseUrl
+        const method = user._id ? 'put' : 'post'
+        const url = user._id ? `${baseUrl}/${user._id}` : baseUrl
         axios[method](url, user)
             .then(resp => {
                 const list = this.getUpdatedList(resp.data)
@@ -40,7 +40,7 @@ export default class UserCrud extends Component {
     }
 
     getUpdatedList(user, add = true) {
-        const list = this.state.list.filter(u => u.id !== user.id)
+        const list = this.state.list.filter(u => u._id !== user._id)
         if(add) list.unshift(user)
         return list
     }
@@ -62,18 +62,18 @@ export default class UserCrud extends Component {
                                 name="name"
                                 value={this.state.user.name}
                                 onChange={e => this.updateField(e)}
-                                placeholder="Digite a pergunta..." />
+                                placeholder="Digite o nome..." />
                         </div>
                     </div>
 
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Email</label>
+                            <label>E-mail</label>
                             <input type="text" className="form-control"
                                 name="email"
                                 value={this.state.user.email}
                                 onChange={e => this.updateField(e)}
-                                placeholder="Digite a resposta..." />
+                                placeholder="Digite o e-mail..." />
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ export default class UserCrud extends Component {
     }
 
     remove(user) {
-        axios.delete(`${baseUrl}/${user.id}`).then(resp => {
+        axios.delete(`${baseUrl}/${user._id}`).then(resp => {
             const list = this.getUpdatedList(user, false)
             this.setState({ list })
         })
@@ -112,9 +112,10 @@ export default class UserCrud extends Component {
             <table className="table mt-4">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>ID</th>
                         <th>Nome</th>
-                        <th>Email</th>
+                        <th>E-mail</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,7 +128,8 @@ export default class UserCrud extends Component {
     renderRows() {
         return this.state.list.map(user => {
             return (
-                <tr key={user.id}>
+                <tr key={user._id}>
+                    <td>{user._id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>
